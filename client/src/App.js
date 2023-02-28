@@ -1,5 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Navbar from './components/navbar';
+import Home from "./pages/home";
 
 //importing the apollo client
 import {
@@ -35,8 +37,15 @@ function App() {
     <ApolloProvider client={client}>
     <Router>
       <>
-      
-      </>
+      <Navbar />
+      <Routes>
+          <Route 
+            path='/' 
+            element={<Home />} 
+     />
+
+     </Routes>
+     </>
     </Router>
     </ApolloProvider>
   );
