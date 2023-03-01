@@ -10,3 +10,16 @@ export const GET_ME = gql`
     }
   }
 `;
+
+export const QUERY_PRODUCTS = gql`
+  query getProducts {
+    products {
+      _id
+      name
+      descriptions
+      category
+      price
+    }
+  }
+`;
+

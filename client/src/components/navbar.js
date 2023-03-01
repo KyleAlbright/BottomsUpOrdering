@@ -1,4 +1,4 @@
-import "./NavBarStyle.css";
+
 import React, { useState } from "react";
 import Link from "@material-ui/core/Link";
 import { makeStyles } from "@material-ui/core/styles";
@@ -15,7 +15,7 @@ import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 
 const navigationLinks = [
-  { name: "View Products", href: "" },
+  { name: "View Products", href: "/products" },
   { name: "View Cart", href: "" },
   { name: "Contact Us", href: "" },
 ];
