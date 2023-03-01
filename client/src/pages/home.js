@@ -3,16 +3,16 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
-import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import ReactPlayer from 'react-player';
 import heroVideo from '../assets/HeroVideo.mp4';
 
 const useStyles = makeStyles(theme => ({
   root: {
+    top: 0,
     width: '100%',
-    height: '80vh',
-    position: 'relative',
+    height: '100vh',
+    position: 'absolute',
     '& video': {
       objectFit: 'cover',
     },
@@ -53,13 +53,12 @@ const Hero = () => {
           color="#fff"
         >
           <Typography variant="h3" component="h1" className={classes.title}>
-            Title Goes Here
+            Bottoms-Up Ordering
           </Typography>
-          <Button color="primary" variant="contained">
-            Click Me
-          </Button>
+          
         </Box>
       </div>
+
     </section>
   );
 };
