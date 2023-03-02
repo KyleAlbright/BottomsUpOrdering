@@ -18,6 +18,9 @@ const navigationLinks = [
   { name: "View Products", href: "/products" },
   { name: "View Cart", href: "" },
   { name: "Contact Us", href: "" },
+  { name: "Login", href: "/login"},
+ 
+
 ];
 
 const useStyles = makeStyles((theme) => ({

@@ -4,10 +4,12 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { CardActionArea } from "@mui/material";
+import { withStyles } from "@material-ui/core/styles"
+import { ClassNames } from '@emotion/react';
 
 const ProductCard = ({product}) => {
   return (
-    <Card sx={{ maxWidth: 345 }}>
+    <Card className = {ClassNames.item} sx={{ maxWidth: 345 }}>
       <CardActionArea>
       
           <>
@@ -27,7 +29,7 @@ const ProductCard = ({product}) => {
               <Typography
                 variant="body2"
                 color="text.secondary"
-                >{product.description}
+                ><h2>{product.price}</h2>
               </Typography>
             </CardContent>
           </>
@@ -38,4 +40,11 @@ const ProductCard = ({product}) => {
   
 }
 
-export default ProductCard
+export default withStyles({
+  item:{minWidth: "350px",
+margin: "1em", 
+boxSizing: "border-box"},
+media:{
+  minWidth: "200px"
+}
+}) (ProductCard)

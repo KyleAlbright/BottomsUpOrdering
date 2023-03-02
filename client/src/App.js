@@ -1,57 +1,56 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Navbar from './components/navbar';
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Navbar from "./components/navbar";
 import Home from "./pages/home";
-import Products from "./pages/products"
+import Products from "./pages/products";
+import Login from "./components/SignIn";
+import Signup from "./components/SignIn";
+import LogAndSign from "./components/LogAndSign"
 
 //importing the apollo client
 import {
-  ApolloClient, 
-  InMemoryCache, 
-  ApolloProvider, 
-  createHttpLink, 
-
-} from '@apollo/client';
-import { setContext } from '@apollo/client/link/context';
+  ApolloClient,
+  InMemoryCache,
+  ApolloProvider,
+  createHttpLink,
+} from "@apollo/client";
+import { setContext } from "@apollo/client/link/context";
 
 const httpLink = createHttpLink({
-  uri: '/graphql', 
+  uri: "/graphql",
 });
 
 const authLink = setContext((_, { headers }) => {
-  const token = localStorage.getItem('id_token');
+  const token = localStorage.getItem("id_token");
   return {
     headers: {
-      ...headers, 
-      authorization: token ? `Bearer ${token}` : '', 
+      ...headers,
+      authorization: token ? `Bearer ${token}` : "",
     },
   };
 });
 
 const client = new ApolloClient({
-  link: authLink.concat(httpLink), 
-  cache: new InMemoryCache(), 
+  link: authLink.concat(httpLink),
+  cache: new InMemoryCache(),
 });
 
 function App() {
   return (
     <ApolloProvider client={client}>
-    <Router>
-      <>
-      <Navbar />
-      <Routes>
-          <Route 
-            path='/' 
-            element={<Home />} 
-     />
-     <Route 
-            path='products' 
-            element={<Products />} 
-     />
+      <Router>
+        <>
+          <Navbar />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="products" element={<Products />} />
 
-     </Routes>
-     </>
-    </Router>
+            <Route path="login" element={<LogAndSign />} />
+
+           
+          </Routes>
+        </>
+      </Router>
     </ApolloProvider>
   );
 }
