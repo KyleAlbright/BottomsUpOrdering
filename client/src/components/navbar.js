@@ -17,7 +17,7 @@ import ListItem from "@material-ui/core/ListItem";
 const navigationLinks = [
   { name: "View Products", href: "/products" },
   { name: "View Cart", href: "" },
-  { name: "Contact Us", href: "" },
+  { name: "Contact Us", href: "/contact" },
 ];
 
 const useStyles = makeStyles((theme) => ({
