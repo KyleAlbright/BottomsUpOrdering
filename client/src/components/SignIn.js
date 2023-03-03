@@ -8,7 +8,8 @@ import {
   Typography,
   Link,
   FormGroup,
- 
+  FormControl,
+  Input,
 
 
 } from "@material-ui/core";
@@ -82,28 +83,27 @@ const Login = () => {
         <FormGroup noValidate validated={validated} onSubmit={handleFormSubmit}>
          <Alert dismissible onClose={() => setShowAlert(false)} show={showAlert} variant='danger'>
           Something went wrong with your login credentials! </Alert>
-        <TextField
-          type = "text"
-          name = 'Email'
-          placeholder="Enter Email"
-          onChange={handleInputChange}
-          value={userFormData.email}
-          fullWidth
-          required
-        />
-        <TextField
-          name="Password"
-          placeholder="Enter Password"
-          type="password"
-          onChange={handleInputChange}
-          value={userFormData.password}
-          fullWidth
-          required
-        />
-
-        <Button disabled={!(userFormData.email && userFormData.password)} type="submit" color="primary" variant="contained" style={btnStyle} fullWidth>
-          Sign In
-        </Button>
+          <FormControl           
+            type = "text"
+            name = 'Email'
+            onChange={handleInputChange}
+            value={userFormData.email}
+            fullWidth
+            required>
+            <Input placeholder="Enter Email" />
+          </FormControl>
+          <FormControl
+            name="Password"
+            type="password"
+            onChange={handleInputChange}
+            value={userFormData.password}
+            fullWidth
+            required>
+            <Input placeholder="Enter Password"/>
+          </FormControl>
+          <Button disabled={!(userFormData.email && userFormData.password)} type="submit" color="primary" variant="contained" style={btnStyle} fullWidth>
+            Sign In
+          </Button>
         </FormGroup>
         <Typography> Do you have an account?
           <Link href="#" >
