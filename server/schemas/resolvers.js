@@ -1,5 +1,5 @@
 const { AuthenticationError } = require("apollo-server-express");
-const { User, Product } = require("../models/product.js");
+const { User, Product } = require("../models");
 const { signToken } = require("../utils/auth");
 
 const resolvers = {
@@ -13,12 +13,14 @@ const resolvers = {
       }
       throw new AuthenticationError("Not logged in");
     },
-  },
 
-  Query: {
     getProducts: async (parent, args, context) => {
-     const products = await Product.find({})
-     return products
+      const products = await Product.find({});
+      return products;
+    },
+
+    getSingleProduct: async (parent, { productId }) => {
+      return Product.findOne({ _id: productId });
     },
   },
 
@@ -29,7 +31,7 @@ const resolvers = {
       if (!user) {
         throw new AuthenticationError("Wrong login credentials");
       }
-      const correctPassword = await User.isCorrectPassword(password);
+      const correctPassword = await user.isCorrectPassword(password);
 
       if (!correctPassword) {
         throw new AuthenticationError("Wrong login credentials");
@@ -38,12 +40,12 @@ const resolvers = {
       return { token, user };
     },
 
-    addUser: async (parent, args) => {
-      const user = await User.create(args);
+    addUser: async (parent, {username, email, password}) => {
+      const user = await User.create({username, email, password});
       const token = signToken(user);
       return { token, user };
     },
   },
-}
+};
 
 module.exports = resolvers;
