@@ -12,12 +12,13 @@ const typeDefs = gql`
     name: String!
     description: String!
     category: String!
-    price: Int
+    price: Float
+    image: String!
   }
 
   type Query {
     me: User
-    getProducts: [Product]
+    products: [Product]
     getSingleProduct(productId:ID!): Product
   }
 

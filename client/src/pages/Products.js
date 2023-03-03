@@ -1,5 +1,5 @@
 import * as React from "react";
-// import { useQuery } from "@apollo/client";
+import { useQuery } from "@apollo/client";
 
 import {
   Grid,
@@ -12,16 +12,16 @@ import {
   FormControl,
 } from "@material-ui/core";
 
-// import { QUERY_PRODUCTS } from "../utils/queries";
-import ProductSeeds from "./productSeeds.json";
+import { QUERY_PRODUCTS } from "../utils/queries";
+
 import ProductCard from "./productCard";
-import Bottles from "../assets/bottles.jpg";
+// import Bottles from "../assets/bottles.jpg";
 
 const Products = () => {
-  //   const { loading, data } = useQuery(QUERY_PRODUCTS);
-  //   const products = data?.products || [];
+  const { loading, data } = useQuery(QUERY_PRODUCTS);
+  const products = data?.products || [];
 
-  let products = ProductSeeds;
+  console.log(data);
 
   return (
     <>
@@ -37,9 +37,7 @@ const Products = () => {
             <Select
               labelId="demo-simple-select-label"
               id="demo-simple-select"
-              // value={quantity}
               label="Quantity"
-              // onChange={handleChange}
             >
               <MenuItem value={1}>Vodka</MenuItem>
               <MenuItem value={2}>Gin</MenuItem>
@@ -51,8 +49,10 @@ const Products = () => {
           </FormControl>
         </Box>
       </Container>
-      <Grid container spacing={24} justify="center">
-        {ProductSeeds.map((product) => {
+      <Grid container spacing={2} justify="center">
+          
+        {products.map((product) => {
+          console.log("I am a product")
           return (
             <Grid
               item
@@ -63,7 +63,7 @@ const Products = () => {
               sx={{ margin: "20px auto" }}
             >
               {" "}
-              <ProductCard product={product} />{" "}
+              <ProductCard product={product}/>
             </Grid>
           );
         })}

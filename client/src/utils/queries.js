@@ -12,13 +12,27 @@ export const GET_ME = gql`
 `;
 
 export const QUERY_PRODUCTS = gql`
-  query getProducts {
+  query products {
     products {
       _id
       name
-      descriptions
-      category
+      description 
+     category
       price
+      image
+    }
+  }
+`;
+
+export const QUERY_SINGLE_PRODUCT = gql`
+  query singleProduct ($productId: ID!) {
+    getSingleProduct (productId: $productId) {
+      _id
+      name
+      description 
+     category
+      price
+      image
     }
   }
 `;
