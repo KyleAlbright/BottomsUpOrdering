@@ -8,7 +8,7 @@ const useStyles =  makeStyles({
             width:"100%",
             textAlign: "center",
             padding: "1rem",
-            position: "absolute",
+            position: "sticky",
             bottom: "0"
         }
     

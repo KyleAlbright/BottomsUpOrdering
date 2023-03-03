@@ -15,7 +15,7 @@ const product = {
   category: "Whiskey"
 }
 
-export default function Products(){
+export default function SingleProduct(){
   const [selectedImage, setSelectedImage] = useState(0);
   return (
     <div>
