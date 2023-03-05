@@ -1,6 +1,5 @@
 import * as React from "react";
-// import { useQuery } from "@apollo/client";
-
+import { useQuery } from "@apollo/client";
 import {
   Grid,
   Container,
@@ -11,17 +10,24 @@ import {
   InputLabel,
   FormControl,
 } from "@material-ui/core";
-
-// import { QUERY_PRODUCTS } from "../utils/queries";
-import ProductSeeds from "./productSeeds.json";
+import { QUERY_PRODUCTS } from "../utils/queries";
 import ProductCard from "./productCard";
-import Bottles from "../assets/bottles.jpg";
 
 const Products = () => {
-  //   const { loading, data } = useQuery(QUERY_PRODUCTS);
-  //   const products = data?.products || [];
+  const { loading, data } = useQuery(QUERY_PRODUCTS);
+  const [selectedProductType, setSelectedProductType] = React.useState(null);
+  const products = data?.products || [];
 
-  let products = ProductSeeds;
+  const handleProductTypeSelect = (event) => {
+    setSelectedProductType(event.target.value);
+  };
+
+  let filteredProducts = products;
+  if (selectedProductType) {
+    filteredProducts = products.filter(
+      (product) => product.category === selectedProductType
+    );
+  }
 
   return (
     <>
@@ -37,33 +43,34 @@ const Products = () => {
             <Select
               labelId="demo-simple-select-label"
               id="demo-simple-select"
-              // value={quantity}
               label="Quantity"
-              // onChange={handleChange}
+              value={selectedProductType}
+              onChange={handleProductTypeSelect}
             >
-              <MenuItem value={1}>Vodka</MenuItem>
-              <MenuItem value={2}>Gin</MenuItem>
-              <MenuItem value={3}>Rum</MenuItem>
-              <MenuItem value={4}>Tequila</MenuItem>
-              <MenuItem value={5}>Whiskey</MenuItem>
-              <MenuItem value={6}>Scotch</MenuItem>
+              <MenuItem value={null}>All Products</MenuItem>
+              <MenuItem value="Vodka">Vodka</MenuItem>
+              <MenuItem value="Gin">Gin</MenuItem>
+              <MenuItem value="Rum">Rum</MenuItem>
+              <MenuItem value="Tequila">Tequila</MenuItem>
+              <MenuItem value="Whiskey">Whiskey</MenuItem>
+              <MenuItem value="Scotch">Scotch</MenuItem>
+              <MenuItem value="Mezcal">Mezcal</MenuItem>
             </Select>
           </FormControl>
         </Box>
       </Container>
-      <Grid container spacing={24} justify="center">
-        {ProductSeeds.map((product) => {
+      <Grid container spacing={2} justify="center">
+        {filteredProducts.map((product) => {
           return (
             <Grid
               item
               xs={2}
               sm={4}
               md={3}
-              key={product}
+              key={product.id}
               sx={{ margin: "20px auto" }}
             >
-              {" "}
-              <ProductCard product={product} />{" "}
+              <ProductCard product={product} />
             </Grid>
           );
         })}

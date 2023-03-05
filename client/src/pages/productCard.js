@@ -1,5 +1,5 @@
 import React from 'react'
-import Link from "react-router-dom"
+import  { Link } from "react-router-dom"
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
@@ -8,14 +8,16 @@ import { CardActionArea } from "@mui/material";
 import { withStyles } from "@material-ui/core/styles"
 import { ClassNames } from '@emotion/react';
 
-import { useMutation, useQuery } from "@apollo/react-hooks";
+// import { useQuery } from "@apollo/react-hooks";
+
+// import { QUERY_SINGLE_PRODUCT } from '../utils/queries';
 
 
 const ProductCard = ({product}) => {
   return (
     <Card className = {ClassNames.item} sx={{ maxWidth: 345 }}>
       <CardActionArea>
-      {/* <Link to={._id}></Link> */}
+      <Link to={`/products/${product._id}`}>
           <>
             <CardMedia
               component="img"
@@ -37,7 +39,7 @@ const ProductCard = ({product}) => {
               </Typography>
             </CardContent>
           </>
-        
+          </Link>
       </CardActionArea>
     </Card>
   );

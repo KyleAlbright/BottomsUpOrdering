@@ -2,14 +2,16 @@ import React from 'react'
 import { Grid, Typography, Divider, Button, Box, FormControl, InputLabel, Select, MenuItem } from "@material-ui/core"
 import { FaCartPlus } from "react-icons/fa";
 
-export default function Info ({title, description, price, category }) {
+export default function Info ({props }) { 
+  const {name, description, price} = props
   return <Grid container direction ="column" style={{height: '100%'}}> 
-  <Typography variant = "subtitle1">{title}</Typography>
+  <Typography variant = "h4">{name}</Typography>
   <Divider />
   <Box mt={2}>
-<Typography variant="h4">{category}</Typography>
+
 <Typography variant="subtitle1">{description}</Typography>
-<Typography variant="">${price}</Typography>
+<Divider />
+<Typography variant="h6">${price}</Typography>
 
   </Box>
   

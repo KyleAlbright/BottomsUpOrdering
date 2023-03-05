@@ -93,6 +93,14 @@
     
   }, 
   {
+    "name": "Casamigos Joven Mezcal",
+    "description": "Casamigos Joven Mezcal is produced in Oaxaca, Mexico by a 4th generation family of Mezcaleros using 100% Espadin agaves. Every one of the bottles is hand crafted using a unique process insuring no two bottles will ever be the same. Casamigos Mezcal is balanced and elegant, offering harmonious hints of tamarind, pomegranate, banana and mango. Fresh herbal mint aromas, dried oregano and thyme lend character to the mezcal. The delicate tones of smoke, hints of licorice and mineral nuances lead to a long silky finish.",
+    "category": "Mezcal",
+    "price": 69.67,
+    "image": "https://products2.imgix.drizly.com/ci-casamigos-mezcal-f9b498b49b75f576.jpeg?auto=format%2Ccompress&ch=Width%2CDPR&fm=jpg&q=20"
+    
+  }, 
+  {
     "name": "Captain Morgan Original Spiced Rum",
     "description": "Spice it up with our classic Captain Morgan Original Spiced Rum. It's a secret blend with subtle notes of vanilla and caramel to create a smooth and medium-bodied taste. With less than 1 gram of sugar* and only 86 calories per serve,* our Captain Morgan Original Spiced Rum is gluten-free and perfect for pairing with your favorite mixers. There's a reason this is the #1 selling spiced rum in North America! For a delicious Captain Morgan & Ginger, combine Captain Morgan Original Spiced Rum and ginger ale in a glass with ice, garnish with mint and lime, then stir and enjoy",
     "category": "Rum",
@@ -122,6 +130,14 @@
     "category": "Vodka",
     "price": 18.69 ,
     "image": "https://products0.imgix.drizly.com/ci-deep-eddy-ruby-red-vodka-dd592eb2b92a83ec.jpeg?auto=format%2Ccompress&ch=Width%2CDPR&fm=jpg&q=20"
+    
+  }, 
+  {
+    "name": "Desert Door Oak-Aged Texas Sotol",
+    "description": "Made by hand in Driftwood from wild-harvested West Texas sotol plants, Desert Door Oak-Aged sotol is a premium sipping spirit that tastes unquestionably of the land. The spiced cinnamon and vanilla flavor is reminiscent of a smooth bourbon while retaining the unique flavors only Texas sotol can deliver. More spiced than vegetal, the bouquet opens with a bang of vanilla and a touch of cedar and cinnamon. Next comes an infusion of dusty cherry, beeswax, allspice, and pine nuts. It finishes with a rich balance of oak, eucalyptus, a touch of caramel, and ineffable mystery. Enjoy Desert Door Oak-Aged Texas Sotol neat or in an Old Fashioned. ",
+    "category": "Mezcal",
+    "price": 53.99 ,
+    "image": "https://products0.imgix.drizly.com/ci-desert-door-oak-aged-texas-sotol-9047644f4462ab6b.png?auto=format%2Ccompress&ch=Width%2CDPR&fm=jpg&q=20"
     
   }, 
   {
@@ -170,6 +186,13 @@
     "category": "Gin",
     "price": 48.99,
     "image": "https://products2.imgix.drizly.com/ci-hendricks-gin-7270fa521eb29536.jpeg?auto=format%2Ccompress&ch=Width%2CDPR&fm=jpg&q=20"
+  },
+  {
+    "name": "Ilegal Mezcal Joven",
+    "description": "Full bodied agave flavor. Eucalyptus and mineral aromas compliment hints of green apple, fresh citrus, and red chiltepe. Hint of smoke. Ilegal began back in 2003ish, very informally & almost by mistake. Ilegal's founder, John Rexer, was transporting mezcal 'creatively' from Oaxaca to supply his bar, Café no Sé in Antigua Guatemala. The first mezcal bar outside of Mexico. In 2006, the brand, Ilegal, was created, originally to continue to supply the bar in Guatemala. As tribute to this origin, the back of each bottle of Ilegal reads, “Originally produced for: Café No Sé Mezcal Bar",
+    "category": "Mezcal",
+    "price": 42.62,
+    "image": "https://products3.imgix.drizly.com/ci-ilegal-mezcal-joven-19b5a27b4e8f1608.jpeg?auto=format%2Ccompress&ch=Width%2CDPR&fm=jpg&q=20"
   },
   {
     "name": "Jack Daniel's Old No. 7 Tennessee Whiskey",
@@ -237,11 +260,25 @@
     "image": "https://products3.imgix.drizly.com/ci-malibu-original-coconut-rum-23fadbc50ccf3df9.png?auto=format%2Ccompress&ch=Width%2CDPR&fm=jpg&q=20"
   },
   {
+    "name": "Mezcal Union Uno",
+    "description": "Artisanally produced and bottled in Oaxaca. Mezcal UNIÓN's goal is to preserve traditional distilling craft and empower locals to grow socioeconomically by uniting artisanal distilleries and agave farmers. Blend of agave Espadín and agave Cirial. Very balanced between the smokiness from the production process and the flavours of the agave. Ideal for sipping, great for cocktails.",
+    "category": "Mezcal",
+    "price": 38.49 ,
+    "image": "https://products0.imgix.drizly.com/ci-mezcal-union-c58df0f78619bd7a.png?auto=format%2Ccompress&ch=Width%2CDPR&fm=jpg&q=20"
+  },
+  {
     "name": "Monkey Shoulder Blended Scotch",
     "description": "Monkey Shoulder is a blend of Speyside single malt Scotch whiskies married together for flavor and consistency. The richness and vibrancy combine with fruity aromas and mellow vanilla, making it perfect for mixed drinks and cocktails. Monkey Shoulder casks are former bourbon casks, which add smooth vanilla flavors to this Scotch. It also has no grain whisky whatsoever anywhere in or even near the drink. It's barley all the way, folks.The name Monkey Shoulder might sound funny, but it has a history in whisky making. The maltmen who used to turn the barley would take long shifts, using their dominant arm significantly while working. At the end of the day, their shoulders would droop on one side, an ailment that became known as 'Monkey Shoulder.'Thankfully, the condition no longer exists, but the name lives on in our whisky.",
     "category": "Scotch",
     "price": 36.99 ,
     "image": "https://products2.imgix.drizly.com/ci-monkey-shoulder-blended-scotch-4171ca3927963cf7.png?auto=format%2Ccompress&ch=Width%2CDPR&fm=jpg&q=20"
+  },
+  {
+    "name": "Montelobos Mezcal Tobala",
+    "description": "Born from centuries of mezcalero craft and enlightened by the methodical pursuit of perfection, Montelobos Tobala is an unaged joven mezcal, crafted from meticulously cultivated agave, which is roasted underground, wild fermented and small batch. This expression of Montelobos is copper pot distilled to achieve perfect balance of green agave, sweetness, and subtle smoke. Meticulously crafted, artisinally produced and strikingly balanced, Montelobos Tobala is an experience unto itself.",
+    "category": "Mezcal",
+    "price": 106.34 ,
+    "image": "https://products2.imgix.drizly.com/ci-montelobos-tobala-mezcal-baed946b5845766b.jpeg?auto=format%2Ccompress&ch=Width%2CDPR&fm=jpg&q=20"
   },
   {
     "name": "Myers's Original Dark Rum",
@@ -263,6 +300,13 @@
     "category": "Tequila",
     "price": 52.90,
     "image": "https://products3.imgix.drizly.com/ci-patron-silver-25fa130a809ea038.jpeg?auto=format%2Ccompress&ch=Width%2CDPR&fm=jpg&q=20"
+  },
+  {
+    "name": "Sombra Mezcal Artesanal Joven Handcrafted",
+    "description": "Submerge your senses in the dueling fruity and smoky flavors of Sombra Mezcal Artesanal Joven. Our Espadin agave grown at up to 8,000 feet is harvested by local farmers before undergoing a distillation process reimagined to reduce environmental impact and support the community of Santiago Matatlán, Oaxaca, Mexico. The mezcal features a spicy, fruity nose with notes of citrus and a hint of smoke, a smooth and warming flavor, and a clean and fruit-driven finish. Swap out the tequila for mezcal in a Shadow Margarita with Sombra Mezcal Artesanal Joven, fresh lime juice, and agave nectar served in a rocks or coupe glass finished with a black salt rim and lime. Please drink responsibly.",
+    "category": "Mezcal",
+    "price": 39.99,
+    "image": "https://products1.imgix.drizly.com/ci-sombra-blanco-mezcal-4e6b373e3772b3e8.jpeg?auto=format%2Ccompress&ch=Width%2CDPR&fm=jpg&q=20"
   },
   {
     "name": "Taaka Vodka",
@@ -292,6 +336,13 @@
     "category": "Whiskey",
     "price": 28.98,
     "image": "https://products1.imgix.drizly.com/ci-tullamore-dew-irish-whiskey-c19b913763eb1783.jpeg?auto=format%2Ccompress&ch=Width%2CDPR&fm=jpg&q=20"
+  },
+  {
+    "name": "Wahaka Mezcal Joven Espadin",
+    "description": "Wahaka Mezcal Joven Espadín elegantly delivers what pure mezcal is all about – a balance of smoke and sweetness, delicately poised in every single glass. A specialty of our master distiller, Maestro Mezcalero Alberto “Beto” Morales, our Joven Espadín instantly transports you to our estate where this mezcal’s Espadín agave is grown, harvested, cooked and distilled. Evoking classic notes of earth, smoke and subtle sweetness, this mezcal is un-aged to celebrate the complex flavor of the Espadín agave itself – making it as perfect for sipping, as it is in your favorite cocktail. ",
+    "category": "Mezcal",
+    "price": 39.99,
+    "image": "https://products1.imgix.drizly.com/ci-wahaka-joven-espadin-b77ff8dcce826f92.jpeg?auto=format%2Ccompress&ch=Width%2CDPR&fm=jpg&q=20"
   },
 
   {
