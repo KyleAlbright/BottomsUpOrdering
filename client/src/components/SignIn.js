@@ -10,15 +10,12 @@ import {
   FormGroup,
   FormControl,
   Input,
-
-
 } from "@material-ui/core";
+
 import Alert from '@material-ui/lab/Alert';
-
-import Logo from "../assets/logo4.png"
-
+import Logo from "../assets/logo4.png";
 import { useMutation } from '@apollo/react-hooks';
-import { LOGIN_USER } from '../utils/mutations'
+import { LOGIN_USER } from '../utils/mutations';
 import Auth from '../utils/auth';
 
 const Login = () => {
