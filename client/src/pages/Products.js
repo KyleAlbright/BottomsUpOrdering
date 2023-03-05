@@ -10,8 +10,10 @@ import {
   InputLabel,
   FormControl,
 } from "@material-ui/core";
+
 import { QUERY_PRODUCTS } from "../utils/queries";
 import ProductCard from "./productCard";
+import { motion } from "framer-motion";
 
 const Products = () => {
   const { loading, data } = useQuery(QUERY_PRODUCTS);
@@ -31,12 +33,24 @@ const Products = () => {
 
   return (
     <>
-      <Container id="hero" className="hero" maxWidth="sm">
+       <Container
+      id="hero"
+      className="hero"
+      maxWidth="sm"
+      inputProps={{
+      sx:{
+        backgroundImage: "url('../assets/bottles.jpg')",
+        backgroundSize: "cover",
+        backgroundRepeat: "no-repeat",
+        backgroundPosition: "center",
+      }
+    }}
+    >
         <Box sx={{ my: 4 }}>
           <Typography variant="h4" component="h1" gutterBottom>
             Search by Product
           </Typography>
-          <FormControl fullWidth>
+          <FormControl fullWidth sx={{ marginBottom: "1rem" }}>
             <InputLabel id="demo-simple-select-label">
               View Items by type
             </InputLabel>
@@ -46,6 +60,7 @@ const Products = () => {
               label="Quantity"
               value={selectedProductType}
               onChange={handleProductTypeSelect}
+              variant="outlined"
             >
               <MenuItem value={null}>All Products</MenuItem>
               <MenuItem value="Vodka">Vodka</MenuItem>
@@ -59,18 +74,25 @@ const Products = () => {
           </FormControl>
         </Box>
       </Container>
-      <Grid container spacing={2} justify="center">
+      <Grid container spacing={1} justifyContent="center">
         {filteredProducts.map((product) => {
           return (
             <Grid
               item
-              xs={2}
-              sm={4}
-              md={3}
+              xs={12}
+              sm={6}
+              md={4}
+              lg={3}
               key={product.id}
               sx={{ margin: "20px auto" }}
             >
-              <ProductCard product={product} />
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.3 }}
+              >
+                <ProductCard product={product} />
+              </motion.div>
             </Grid>
           );
         })}

@@ -1,7 +1,8 @@
-//I could not get material ui to do what I wanted it to do, so I am using styled components for this.
+
 import React from "react";
 import { Typography, Button, Grid, Box, IconButton } from "@material-ui/core";
 import { AddCircleOutline, RemoveCircleOutline } from "@material-ui/icons";
+
 
 const shoppingCart = () => {
   return (
@@ -14,9 +15,7 @@ const shoppingCart = () => {
         </Grid>
         <Grid item container justifyContent="space-between" alignItems="center">
           <Button>Continue Shopping</Button>
-          <Box>
-            <Typography variant="subtitle1">Shopping Cart (2)</Typography>
-          </Box>
+         
           <Button color="primary">Proceed to Checkout</Button>
         </Grid>
         <Grid item container justifyContent="space-between" alignItems="flex-start">
