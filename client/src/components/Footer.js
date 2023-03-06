@@ -3,7 +3,7 @@ import { makeStyles } from "@material-ui/styles";
 
 const useStyles = makeStyles({
   footer: {
-    backgroundColor: "grey",
+    backgroundColor: "#6B4D2F",
     color: "white",
     width: "100%",
     textAlign: "center",

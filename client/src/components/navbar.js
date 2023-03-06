@@ -1,99 +1,178 @@
 
-import React, { useState } from "react";
-import Link from "@material-ui/core/Link";
-import { makeStyles } from "@material-ui/core/styles";
-import AppBar from "@material-ui/core/AppBar";
-import ToolBar from "@material-ui/core/ToolBar";
-import Container from "@material-ui/core/Container";
-import Hidden from "@material-ui/core/Hidden";
-import IconButton from "@material-ui/core/IconButton";
+import { useState } from "react";
+import {
+  AppBar,
+  Button,
+  Container,
+  IconButton,
+  List,
+  ListItem,
+  ListItemText,
+  Link,
+  makeStyles,
+  Modal,
+  SwipeableDrawer,
+  Toolbar,
+  Avatar
+} from "@material-ui/core";
+import Logo from "../assets/logo4.png";
 import MenuIcon from "@material-ui/icons/Menu";
-import SwipeableDrawer from "@material-ui/core/SwipeableDrawer";
-import Divider from "@material-ui/core/Divider";
-import ChevronRightIcon from "@material-ui/icons/ChevronRight";
-import List from "@material-ui/core/List";
-import ListItem from "@material-ui/core/ListItem";
+import Login from "./LogAndSign";
+
 
 const navigationLinks = [
-  { name: "View Products", href: "/products" },
-  { name: "View Cart", href: "/shoppingCart" },
-  { name: "Contact Us", href: "/contact" },
-  { name: "Login", href: "/login" },
-
+  { name: "Products", href: "/products" },
+  { name: "View Cart", href: "shoppingcart" },
+  { name: "Contact Us", href: "contact" },
+  { name: "Login", href: "login" },
 ];
 
 const useStyles = makeStyles((theme) => ({
-  link: {
-    marginRight: 20,
-    textDecoration: "none",
-    color: "#fff",
-    
-  },
   navBar: {
-    backgroundColor: "transparent",
-    boxShadow: "none",
+    backgroundColor: '#6B4D2F',
+    color: theme.palette.primary.contrastText,
+    paddingTop: theme.spacing(2),
+    paddingBottom: theme.spacing(2),
+    [theme.breakpoints.up("sm")]: {
+      paddingTop: theme.spacing(3),
+      paddingBottom: theme.spacing(3),
+    },
   },
-  dropDown: {
-    color: "grey"
-  }
+  link: {
+    color: theme.palette.primary.contrastText,
+    marginRight: theme.spacing(2),
+    "&:hover": {
+      textDecoration: "none",
+    },
+    [theme.breakpoints.down("sm")]: {
+      display: "none",
+    },
+  },
+  button: {
+    [theme.breakpoints.up("md")]: {
+      display: "none",
+    },
+  },
+  drawer: {
+    width: 250,
+  },
+  paper: {
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    backgroundColor: theme.palette.background.paper,
+    boxShadow: theme.shadows[5],
+    padding: theme.spacing(4),
+    outline: "none",
+  },
 }));
 
 export default function Header() {
   const styles = useStyles();
   const [open, setOpen] = useState(false);
-  return (
-    <AppBar
-      position="sticky" 
-      className={styles.navBar}>
-      
-      <Container maxWidth="md">
-        <ToolBar disableGutters>
-          <Hidden xsDown>
-            {navigationLinks.map((item) => (
-              <Link
-                className={styles.link}
-                variant="button"
-                href={item.href}
-                key={item.name}
-              >
-                {item.name}
-              </Link>
-            ))}
-          </Hidden>
-          <Hidden smUp>
-            <IconButton onClick={() => setOpen(true)}>
-              <MenuIcon color="white" />
-            </IconButton>
-          </Hidden>
-        </ToolBar>
-      </Container>
-      <SwipeableDrawer
-        anchor="right"
-        open={open}
-        onOpen={() => setOpen(true)}
-        onClose={() => setOpen(false)}
-      >
-        <div
-          onClick={() => setOpen(false)}
-          onKeyPress={() => setOpen(false)}
-          role="button"
-          tabIndex={0}
-        >
-          <IconButton>
-            <ChevronRightIcon />
-          </IconButton>
-        </div>
-        <Divider />
-        <List>
-          {navigationLinks.map((item) => (
-            <ListItem key={item.name}>
-              <Link className={styles.dropDown} variant="button" href={item.href}>
-                {item.name}
-              </Link>
+
+  const handleLoginClick = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const [drawerOpen, setDrawerOpen] = useState(false);
+
+  const handleDrawerOpen = () => {
+    setDrawerOpen(true);
+  };
+
+  const handleDrawerClose = () => {
+    setDrawerOpen(false);
+  };
+
+  const drawer = (
+    <div className={styles.drawer}>
+      <List>
+        {navigationLinks
+          .filter((item) => item.name !== "Login")
+          .map((item) => (
+            <ListItem
+              button
+              key={item.name}
+              component={Link}
+              href={item.href}
+              onClick={handleDrawerClose}
+            >
+              <ListItemText primary={item.name} />
             </ListItem>
           ))}
-        </List>
-      </SwipeableDrawer>
-    </AppBar>
+      </List>
+    </div>
   );
-}
+
+
+  return (
+    <>
+      <Modal
+        className={styles.modal}
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="login-modal-title"
+        aria-describedby="login-modal-description"
+      >
+        <div className={styles.paper}>
+          <h2 id="login-modal-title">Login</h2>
+          <p id="login-modal-description">
+            <Login />
+          </p>
+        </div>
+      </Modal>
+      <AppBar position="sticky" className={styles.navBar}>
+        <Container maxWidth="md">
+          <Toolbar disableGutters>
+            <IconButton
+              edge="start"
+              color="inherit"
+              aria-label="open drawer"
+              onClick={handleDrawerOpen}
+              className={styles.button}
+            >
+              <MenuIcon />
+            </IconButton>
+            <SwipeableDrawer
+              anchor="left"
+              open={drawerOpen}
+              onClose={handleDrawerClose}
+              onOpen={handleDrawerOpen}
+            >
+              {drawer}
+            </SwipeableDrawer>
+            <div style={{ flexGrow: 1 }} />
+            <Avatar alt="Bottoms-Up-Logo" src={Logo} />
+            {navigationLinks.map((item) =>
+              item.name === "Login" ? (
+                <Button
+                  variant="contained"
+                  color=""
+                  onClick={handleLoginClick}
+                  key={item.name}
+                >
+                  {item.name}
+                </Button>
+              ) : (
+                <Link
+                  className={styles.link}
+                  variant="button"
+                  href={item.href}
+                  key={item.name}
+                >
+                  {item.name}
+                </Link>
+              )
+            )}
+          </Toolbar>
+        </Container>
+      </AppBar>
+    </>
+  );
+              }
