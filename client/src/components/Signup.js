@@ -7,12 +7,14 @@ import {
   Button,
   Typography,
   Link,
-  FormGroup
+  FormGroup,
+  FormControl,
+  Input,
 } from "@material-ui/core";
 
 import Logo from "../assets/logo4.png";
 import Alert from '@material-ui/lab/Alert';
-import { useMutation } from '@apollo/react-hooks'
+import { useMutation } from '@apollo/react-hooks';
 import Auth from "../utils/auth";
 import { ADD_USER } from "../utils/mutations";
 
@@ -28,25 +30,38 @@ const Signup = () => {
     margin: "8px 0",
   };
 
-  const [userFormData, setUserFormData] = useState({
-    username: "",
-    email: "",
-    password: "",
-  });
+  // Create state variables for the fields in the form
+  // We are also setting their initial values to an empty string
+  const [email, setEmail] = useState('');
+  const [username, setUserName] = useState('');
+  const [password, setPassword] = useState('');
+
   // set state for form validation
   const [validated] = useState(false);
   // set state for alert
   const [showAlert, setShowAlert] = useState(false);
 
-  const [addUser, { error }] = useMutation(ADD_USER);
+  const [addUser, { error, data }] = useMutation(ADD_USER);
 
-  const handleInputChange = (event) => {
-    const { name, value } = event.target;
-    setUserFormData({ ...userFormData, [name]: value });
+  const handleInputChange = (e) => {
+    // Getting the value and name of the input which triggered the change
+    const { target } = e;
+    const inputType = target.name;
+    const inputValue = target.value;
+
+    // Based on the input type, we set the state of either email, username, and password
+    if (inputType === 'email') {
+      setEmail(inputValue);
+    } else if (inputType === 'userName') {
+      setUserName(inputValue);
+    } else {
+      setPassword(inputValue);
+    }
   };
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
+    console.log("Am I here?");
 
     const form = event.currentTarget;
     if (form.checkValidity() === false) {
@@ -55,8 +70,12 @@ const Signup = () => {
     }
 
     try {
+      console.log("guess who is here?");
+      console.log("User name is " + username);
+      console.log("Email is " + email);
+      console.log("Password is " + password);
       const { data } = await addUser({
-        variables: { ...userFormData },
+        variables: { username, email, password },
       });
 
       Auth.login(data.addUser.token);
@@ -65,61 +84,61 @@ const Signup = () => {
       setShowAlert(true);
     }
 
-    setUserFormData({
-      username: "",
-      email: "",
-      password: "",
-    });
+    setUserName('');
+    setPassword('');
+    setEmail('');
+
   };
+
   return (
+
     <Grid>
       <Paper style={paperStyle}>
         <Grid align="center">
           <Avatar src={Logo}></Avatar>
           <h2>Sign In</h2>
         </Grid>
-        <FormGroup noValidate validated={validated} onSubmit={handleFormSubmit}>
-        <Alert dismissible onClose={() => setShowAlert(false)} show={showAlert} variant='danger'>
-          Something went wrong with your login credentials! </Alert>
-        <TextField
-          type = "text"
-          name="Username"
-          placeholder="Enter Username"
-          onChange={handleInputChange}
-          value={userFormData.username}
-          fullWidth
-          required
-        />
-        <TextField
-         type = "text"
-         name="Email" 
-         placeholder="Enter Email"
-         onChange={handleInputChange}
-         value={userFormData.email} 
-         fullWidth 
-         required />
-        
-        <TextField
-          name="Password"
-          placeholder="Enter Password"
-          type="password"
-          onChange={handleInputChange}
-          value={userFormData.password}
-          fullWidth
-          required
-        />
+        <FormGroup noValidate validated={validated}>
+          <Alert dismissible onClose={() => setShowAlert(false)} show={showAlert} variant='danger'>
+            Something went wrong with your login credentials! </Alert>
 
-        <Button
-        disabled={!(userFormData.username && userFormData.email && userFormData.password)}
-          type="submit"
-          color="primary"
-          variant="contained"
-          style={btnStyle}
-          fullWidth
-        >
-          Create Account
-        </Button>
+          <FormControl           
+            type = "text"
+            name="Username"
+            fullWidth
+            required>
+            <Input placeholder="Enter Username" onChange={(event) => setUserName(event.target.value)} />
+          </FormControl>
+
+          <FormControl           
+          type = "text"
+          name="Email" 
+          fullWidth 
+          required>
+            <Input placeholder="Enter Email" onChange={(event) => setEmail(event.target.value)} />
+          </FormControl>
+
+          <FormControl           
+            name="Password"
+            type="password"
+            fullWidth
+            required>
+            <Input placeholder="Enter Password" onChange={(event) => setPassword(event.target.value)}/>
+          </FormControl>
+
+          <Button
+          disabled={!(username && email && password)}
+            type="submit"
+            color="primary"
+            variant="contained"
+            style={btnStyle}
+            fullWidth
+            onClick={handleFormSubmit}>
+            Create Account
+          </Button>
+
         </FormGroup>
+        
         <Typography>
           {" "}
           Already have an account?
