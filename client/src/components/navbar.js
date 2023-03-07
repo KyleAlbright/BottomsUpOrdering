@@ -7,7 +7,6 @@ import {
   List,
   ListItem,
   ListItemText,
-  Link,
   makeStyles,
   Modal,
   SwipeableDrawer,
@@ -17,12 +16,13 @@ import {
 import Logo from "../assets/logo4.png";
 import MenuIcon from "@material-ui/icons/Menu";
 import Login from "./LogAndSign";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 const navigationLinks = [
-  { name: "Products", href: "products" },
-  { name: "View Cart", href: "shoppingcart" },
-  { name: "Contact Us", href: "contact" },
-  { name: "Login", href: "login" },
+  { name: "Products", path: "/products" },
+  { name: "View Cart", path: "/shoppingcart" },
+  { name: "Contact Us", path: "/contact" },
+  { name: "Login", path: "/login" },
 ];
 
 const useStyles = makeStyles((theme) => ({
@@ -39,6 +39,7 @@ const useStyles = makeStyles((theme) => ({
   link: {
     color: theme.palette.primary.contrastText,
     marginRight: theme.spacing(2),
+    textDecoration: 'none', 
     "&:hover": {
       textDecoration: "none",
     },
@@ -64,7 +65,6 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(4),
     outline: "none",
   },
-  
 }));
 
 export default function Header() {
@@ -99,7 +99,7 @@ export default function Header() {
               button
               key={item.name}
               component={Link}
-              href={item.href}
+              to={item.path}
               onClick={handleDrawerClose}
             >
               <ListItemText primary={item.name} />
@@ -161,7 +161,7 @@ export default function Header() {
                 <Link
                   className={styles.link}
                   variant="button"
-                  href={item.href}
+                  to={item.path}
                   key={item.name}
                 >
                   {item.name}
