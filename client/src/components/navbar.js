@@ -18,7 +18,7 @@ import {
 import Logo from "../assets/logo4.png";
 import MenuIcon from "@material-ui/icons/Menu";
 import Login from "./LogAndSign";
-
+import Auth from '../utils/auth';
 
 const navigationLinks = [
   { name: "Products", href: "/products" },
@@ -110,6 +110,10 @@ export default function Header() {
     </div>
   );
 
+  const logout = (event) => {
+    event.preventDefault();
+    Auth.logout();
+  };
 
   return (
     <>
@@ -127,6 +131,7 @@ export default function Header() {
           </p>
         </div>
       </Modal>
+      
       <AppBar position="sticky" className={styles.navBar}>
         <Container maxWidth="md">
           <Toolbar disableGutters>

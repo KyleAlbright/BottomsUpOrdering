@@ -30,16 +30,22 @@ const Login = () => {
     margin: "8px 0"
   };
 
-  const [userFormData, setUserFormData] = useState({ email: '', password: '' });
+  //const [userFormData, setUserFormData] = useState({ email: '', password: '' });
+
+  const [email, setFromEmail] = useState('');
+  const [password, setFromPassword] = useState('');
+
+
+  
   const [validated] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
 
   const[loginUser, {error}] = useMutation(LOGIN_USER);
 
-  const handleInputChange = (event) => {
-    const { name, value } = event.target;
-    setUserFormData({ ...userFormData, [name]: value });
-  };
+  // const handleInputChange = (event) => {
+  //   const { name, value } = event.target;
+  //   setUserFormData({ ...userFormData, [name]: value });
+  // };
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
@@ -53,7 +59,7 @@ const Login = () => {
 
     try {
       const { data } = await loginUser({
-        variables: { ...userFormData },
+        variables: { email, password },
       });
 
       Auth.login(data.login.token);
@@ -63,11 +69,9 @@ const Login = () => {
         setShowAlert(true);
     }
 
-    setUserFormData({
-      username: '', 
-      email: '',
-      password: '',
-    });
+    setFromEmail('');
+    setFromPassword('');
+
   };
   
   return (
@@ -80,25 +84,39 @@ const Login = () => {
         <FormGroup noValidate validated={validated} onSubmit={handleFormSubmit}>
          <Alert dismissible onClose={() => setShowAlert(false)} show={showAlert} variant='danger'>
           Something went wrong with your login credentials! </Alert>
+
+          <div>
+          {Auth.loggedIn() ? (
+               <h2> You are logged in</h2>
+          ) : (
+            <h2>Logout</h2>
+          )}
+        </div>
+
           <FormControl           
             type = "text"
             name = 'Email'
-            onChange={handleInputChange}
-            value={userFormData.email}
             fullWidth
             required>
-            <Input placeholder="Enter Email" />
+            <Input placeholder="Enter Email" onChange={(event) => setFromEmail(event.target.value)} />
           </FormControl>
+
           <FormControl
             name="Password"
             type="password"
-            onChange={handleInputChange}
-            value={userFormData.password}
             fullWidth
             required>
-            <Input placeholder="Enter Password"/>
+            <Input placeholder="Enter Password" onChange={(event) => setFromPassword(event.target.value)}/>
           </FormControl>
-          <Button disabled={!(userFormData.email && userFormData.password)} type="submit" color="primary" variant="contained" style={btnStyle} fullWidth>
+
+          <Button 
+          disabled={!(email && password)} 
+          type="submit" 
+          color="primary" 
+          variant="contained" 
+          style={btnStyle} 
+          fullWidth
+          onClick={handleFormSubmit}>
             Sign In
           </Button>
         </FormGroup>
