@@ -14,14 +14,24 @@ const typeDefs = gql`
     category: String!
     price: Float
     image: String!
+    
+  }
+  type ProductDetails {
+    _id: ID!
+    name: String!
+    description: String!
+    price: Float
+    image: String!
   }
   type Checkout {
     session: ID
+    
   }
   type Query {
     me: User
     products: [Product]
     getSingleProduct(productId:ID!): Product
+    getProduct(productId: ID!): ProductDetails
     checkout(products: [ID]!): Checkout
   }
   type Mutation {

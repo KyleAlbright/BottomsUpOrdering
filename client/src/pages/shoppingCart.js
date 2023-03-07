@@ -1,4 +1,7 @@
 import React, { useState, useEffect } from "react";
+import { useLazyQuery } from "@apollo/client";
+import { QUERY_CHECKOUT } from "../utils/queries";
+import { loadStripe } from "@stripe/stripe-js";
 import {
   Typography,
   Button,
@@ -10,10 +13,50 @@ import {
 import { FaPlus, FaMinus, FaTrash } from "react-icons/fa";
 
 import { motion } from "framer-motion";
-
+const stripePromise = loadStripe(
+  "pk_test_51Mik08C8hyV43LfX89TPuiMShPbe1A0Y61RP3xI73aev8R7CbqpeLJnUZ8XE2ABJUIwpxJq8hom8mSJuk3ET5h6H00FhYk2orT"
+);
 
 const ShoppingCart = () => {
   const [cartItems, setCartItems] = useState([]);
+  const [getCheckout, { data }] = useLazyQuery(QUERY_CHECKOUT);
+  const test = data?.products || [];
+  console.log(data);
+  useEffect(() => {
+    if (data) {
+      stripePromise.then((res) => {
+        res.redirectToCheckout({ sessionId: data.checkout.session });
+      });
+    }
+  }, [data]);
+
+  function submitCheckout() {
+    const productIds = [];
+
+    cartItems.forEach((item) => {
+      console.log(cartItems)
+      for (let i = 0; i < item.quantity; i++) {
+        productIds.push(item.product.id);
+      }
+    });
+    try {
+      console.log(productIds)
+      getCheckout({
+        variables: { products: productIds },
+      });
+      console.log(data);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  function calculateTotal() {
+    let sum = 0;
+    cartItems.forEach((item) => {
+      sum += item.product.price * item.quantity;
+    });
+    return sum.toFixed(2);
+  }
 
   useEffect(() => {
     const storedCartItems = JSON.parse(localStorage.getItem("cartItems"));
@@ -51,8 +94,6 @@ const ShoppingCart = () => {
     setCartItems(updatedCartItems);
     localStorage.setItem("cartItems", JSON.stringify(updatedCartItems));
   };
-
-  
 
   const renderCartItems = () => {
     return cartItems.map((item, index) => {
@@ -108,8 +149,8 @@ const ShoppingCart = () => {
                   </IconButton>
                   <Box flexGrow={1} textAlign="right">
                     <Typography variant="h6">
-                      <b>Price:</b>{" "}
-                      ${(item.product.price * item.quantity).toFixed(2)}
+                      <b>Price:</b> $
+                      {(item.product.price * item.quantity).toFixed(2)}
                     </Typography>
                   </Box>
                 </Box>
@@ -121,20 +162,39 @@ const ShoppingCart = () => {
       );
     });
   };
-
+  
   return (
     <Box>
       <Grid container direction="column" alignItems="center" spacing={4}>
         <Grid item>
           <Typography variant="h3" align="center">
-            Your Cart
+            Your Cart Total: &nbsp;<strong>${calculateTotal()}</strong> 
           </Typography>
         </Grid>
         <Grid item container justifyContent="space-between" alignItems="center">
-          <a href="/products">Continue Shopping</a>
-          <Button color="primary" >Proceed to Checkout</Button>
+          <Grid item>
+            <Button
+              variant="outlined"
+              color="primary"
+              onClick={() => {
+                window.location.href = "/products";
+              }}
+            >
+              Continue Shopping
+            </Button>
+          </Grid>
+          <Grid item>
+            <Button
+              variant="contained"
+              color="primary"
+              disabled={cartItems.length === 0}
+              onClick={submitCheckout}
+            >
+              Checkout
+            </Button>
+          </Grid>
         </Grid>
-        <Grid item container direction="column" alignItems="center" spacing={4}>
+        <Grid item container direction="column" spacing={2}>
           {renderCartItems()}
         </Grid>
       </Grid>

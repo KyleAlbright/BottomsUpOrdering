@@ -11,8 +11,8 @@ const useStyles = makeStyles(theme => ({
   root: {
     top: 0,
     width: '100%',
-    height: '100vh',
-    position: 'absolute',
+    position: 'relative',
+    overflow: 'hidden',
     '& video': {
       objectFit: 'cover',
     },
@@ -24,9 +24,16 @@ const useStyles = makeStyles(theme => ({
     width: '100%',
     height: '100%',
     backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   title: {
-    paddingBottom: theme.spacing(4),
+    paddingBottom: theme.spacing(2),
+    [theme.breakpoints.up('sm')]: {
+      paddingBottom: theme.spacing(4),
+    },
   },
 }));
 
@@ -44,21 +51,12 @@ const Hero = () => {
         height="100%"
       />
       <div className={classes.overlay}>
-        <Box
-          height="100%"
-          display="flex"
-          flexDirection="column"
-          justifyContent="center"
-          alignItems="center"
-          color="#fff"
-        >
+        <Box color="#fff" textAlign="center">
           <Typography variant="h3" component="h1" className={classes.title}>
             Bottoms-Up Ordering
           </Typography>
-          
         </Box>
       </div>
-
     </section>
   );
 };
