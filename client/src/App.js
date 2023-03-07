@@ -4,10 +4,10 @@ import Navbar from "./components/navbar";
 import Home from "./pages/home";
 import Products from "./pages/Products";
 import Contact from "./pages/ContactForm";
-import LogAndSign from "./components/LogAndSign"
+import LogAndSign from "./components/LogAndSign";
 import Footer from "./components/Footer";
-import SingleProduct from "./pages/singleProduct"
-import ShoppingCart from "./pages/shoppingCart"
+import SingleProduct from "./pages/singleProduct";
+import ShoppingCart from "./pages/shoppingCart";
 
 //importing the apollo client
 import {
@@ -44,12 +44,18 @@ function App() {
         <>
           <Navbar />
           <Routes>
+           
             <Route path="/" element={<Home />} />
-            <Route path="products" element={<Products />} />
+          <Route path ="products">
+          <Route index={true} element={<Products />}></Route>
+          {/* <Route path="products" element={<Products />}  /> */}
+          <Route path=":productId" element={<SingleProduct />} />
+          </Route>
+          
             <Route path="login" element={<LogAndSign />} />
-            <Route path="products/:productId" element={<SingleProduct />} />
+            <Route path="shoppingcart" element={<ShoppingCart />} />
+
             <Route path="contact" element={<Contact />} />
-            <Route path ="shoppingcart" element={<ShoppingCart/>} />
             
           </Routes>
         </>
@@ -60,4 +66,3 @@ function App() {
 }
 
 export default App;
-

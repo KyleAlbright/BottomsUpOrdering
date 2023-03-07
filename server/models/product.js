@@ -6,6 +6,12 @@ const productSchema = new Schema({
     required: true,
     unique: true,
   },
+  stripeID: {
+    type: String, 
+    required: false,
+    unique: true,
+  },
+  
   description: {
     type: String, 
     required: true, 
