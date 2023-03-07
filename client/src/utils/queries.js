@@ -6,7 +6,6 @@ export const GET_ME = gql`
       _id
       username
       email
-      
     }
   }
 `;
@@ -30,7 +29,7 @@ export const QUERY_SINGLE_PRODUCT = gql`
       _id
       name
       description 
-     category
+      category
       price
       image
     }

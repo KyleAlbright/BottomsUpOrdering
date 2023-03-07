@@ -20,12 +20,21 @@ import MenuIcon from "@material-ui/icons/Menu";
 import Login from "./LogAndSign";
 import Auth from '../utils/auth';
 
-const navigationLinks = [
-  { name: "Products", href: "/products" },
-  { name: "View Cart", href: "shoppingcart" },
-  { name: "Contact Us", href: "contact" },
-  { name: "Login", href: "login" },
-];
+let navigationLinks = [];
+
+Auth.loggedIn() ? (
+  navigationLinks = [
+    { name: "Products", href: "/products" },
+    { name: "View Cart", href: "shoppingcart" },
+    { name: "Contact Us", href: "contact" },
+    { name: "Logout", href: "login"},
+  ]
+) : (
+  navigationLinks = [
+    { name: "Contact Us", href: "contact" },
+    { name: "Login", href: "login" },
+  ]
+)
 
 const useStyles = makeStyles((theme) => ({
   navBar: {
@@ -131,7 +140,7 @@ export default function Header() {
           </p>
         </div>
       </Modal>
-      
+
       <AppBar position="sticky" className={styles.navBar}>
         <Container maxWidth="md">
           <Toolbar disableGutters>
@@ -154,6 +163,7 @@ export default function Header() {
             </SwipeableDrawer>
             <div style={{ flexGrow: 1 }} />
             <Avatar alt="Bottoms-Up-Logo" src={Logo} />
+
             {navigationLinks.map((item) =>
               item.name === "Login" ? (
                 <Button
@@ -175,9 +185,10 @@ export default function Header() {
                 </Link>
               )
             )}
+
           </Toolbar>
         </Container>
       </AppBar>
     </>
   );
-              }
+}

@@ -3,7 +3,6 @@ import {
   Grid,
   Paper,
   Avatar,
-  TextField,
   Button,
   Typography,
   Link,
@@ -43,25 +42,8 @@ const Signup = () => {
 
   const [addUser, { error, data }] = useMutation(ADD_USER);
 
-  const handleInputChange = (e) => {
-    // Getting the value and name of the input which triggered the change
-    const { target } = e;
-    const inputType = target.name;
-    const inputValue = target.value;
-
-    // Based on the input type, we set the state of either email, username, and password
-    if (inputType === 'email') {
-      setEmail(inputValue);
-    } else if (inputType === 'userName') {
-      setUserName(inputValue);
-    } else {
-      setPassword(inputValue);
-    }
-  };
-
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-    console.log("Am I here?");
 
     const form = event.currentTarget;
     if (form.checkValidity() === false) {
@@ -70,10 +52,6 @@ const Signup = () => {
     }
 
     try {
-      console.log("guess who is here?");
-      console.log("User name is " + username);
-      console.log("Email is " + email);
-      console.log("Password is " + password);
       const { data } = await addUser({
         variables: { username, email, password },
       });

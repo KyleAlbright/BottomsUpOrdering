@@ -30,22 +30,13 @@ const Login = () => {
     margin: "8px 0"
   };
 
-  //const [userFormData, setUserFormData] = useState({ email: '', password: '' });
-
   const [email, setFromEmail] = useState('');
   const [password, setFromPassword] = useState('');
-
-
-  
+ 
   const [validated] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
 
   const[loginUser, {error}] = useMutation(LOGIN_USER);
-
-  // const handleInputChange = (event) => {
-  //   const { name, value } = event.target;
-  //   setUserFormData({ ...userFormData, [name]: value });
-  // };
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
@@ -84,14 +75,6 @@ const Login = () => {
         <FormGroup noValidate validated={validated} onSubmit={handleFormSubmit}>
          <Alert dismissible onClose={() => setShowAlert(false)} show={showAlert} variant='danger'>
           Something went wrong with your login credentials! </Alert>
-
-          <div>
-          {Auth.loggedIn() ? (
-               <h2> You are logged in</h2>
-          ) : (
-            <h2>Logout</h2>
-          )}
-        </div>
 
           <FormControl           
             type = "text"
