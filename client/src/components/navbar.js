@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import {
   AppBar,
@@ -8,16 +7,16 @@ import {
   List,
   ListItem,
   ListItemText,
-  Link,
   makeStyles,
   Modal,
   SwipeableDrawer,
   Toolbar,
-  Avatar
+  Avatar,
 } from "@material-ui/core";
 import Logo from "../assets/logo4.png";
 import MenuIcon from "@material-ui/icons/Menu";
 import Login from "./LogAndSign";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Auth from '../utils/auth';
 
 let navigationLinks = [];
@@ -36,9 +35,14 @@ Auth.loggedIn() ? (
   ]
 )
 
+
+
+
+
+
 const useStyles = makeStyles((theme) => ({
   navBar: {
-    backgroundColor: '#6B4D2F',
+    backgroundColor: "#6B4D2F",
     color: theme.palette.primary.contrastText,
     paddingTop: theme.spacing(2),
     paddingBottom: theme.spacing(2),
@@ -50,6 +54,7 @@ const useStyles = makeStyles((theme) => ({
   link: {
     color: theme.palette.primary.contrastText,
     marginRight: theme.spacing(2),
+    textDecoration: 'none', 
     "&:hover": {
       textDecoration: "none",
     },
@@ -109,7 +114,7 @@ export default function Header() {
               button
               key={item.name}
               component={Link}
-              href={item.href}
+              to={item.path}
               onClick={handleDrawerClose}
             >
               <ListItemText primary={item.name} />
@@ -119,10 +124,12 @@ export default function Header() {
     </div>
   );
 
+
   const logout = (event) => {
     event.preventDefault();
     Auth.logout();
   };
+
 
   return (
     <>
@@ -178,7 +185,7 @@ export default function Header() {
                 <Link
                   className={styles.link}
                   variant="button"
-                  href={item.href}
+                  to={item.path}
                   key={item.name}
                 >
                   {item.name}
@@ -191,4 +198,6 @@ export default function Header() {
       </AppBar>
     </>
   );
+
 }
+
