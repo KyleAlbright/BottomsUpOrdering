@@ -9,15 +9,20 @@ const typeDefs = gql`
   type Product {
     _id: ID!
     name: String!
+    stripeID: String
     description: String!
     category: String!
     price: Float
     image: String!
   }
+  type Checkout {
+    session: ID
+  }
   type Query {
     me: User
     products: [Product]
     getSingleProduct(productId:ID!): Product
+    checkout(products: [ID]!): Checkout
   }
   type Mutation {
     login(email: String!, password: String!): Auth

@@ -28,9 +28,13 @@ const SingleProduct = () => {
     const cartItem = {
       product: {
         id: product._id,
+        stripeID: product.stripeID,
+        description: product.description,
         name: product.name,
         image: product.image,
+        category: product.category, 
         price: product.price,
+
       },
       quantity,
     };

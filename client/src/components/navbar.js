@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import {
   AppBar,
@@ -13,15 +12,14 @@ import {
   Modal,
   SwipeableDrawer,
   Toolbar,
-  Avatar
+  Avatar,
 } from "@material-ui/core";
 import Logo from "../assets/logo4.png";
 import MenuIcon from "@material-ui/icons/Menu";
 import Login from "./LogAndSign";
 
-
 const navigationLinks = [
-  { name: "Products", href: "/products" },
+  { name: "Products", href: "products" },
   { name: "View Cart", href: "shoppingcart" },
   { name: "Contact Us", href: "contact" },
   { name: "Login", href: "login" },
@@ -29,7 +27,7 @@ const navigationLinks = [
 
 const useStyles = makeStyles((theme) => ({
   navBar: {
-    backgroundColor: '#6B4D2F',
+    backgroundColor: "#6B4D2F",
     color: theme.palette.primary.contrastText,
     paddingTop: theme.spacing(2),
     paddingBottom: theme.spacing(2),
@@ -66,6 +64,7 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(4),
     outline: "none",
   },
+  
 }));
 
 export default function Header() {
@@ -109,7 +108,6 @@ export default function Header() {
       </List>
     </div>
   );
-
 
   return (
     <>
@@ -175,4 +173,4 @@ export default function Header() {
       </AppBar>
     </>
   );
-              }
+}
