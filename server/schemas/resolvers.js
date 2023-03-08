@@ -1,7 +1,9 @@
 const { AuthenticationError } = require("apollo-server-express");
 const { User, Product } = require("../models");
 const { signToken } = require("../utils/auth");
-const stripe = require('stripe')('sk_test_51Mik08C8hyV43LfX6Z9u8lBOcsB5CkHMtXeU8two3VugDeY6ZbAab65YMJo8E8pV8QYuYhSKvOvPusLRuFcd2cnc00av0E55rl');
+const stripe = require("stripe")(
+  "sk_test_51Mik08C8hyV43LfX6Z9u8lBOcsB5CkHMtXeU8two3VugDeY6ZbAab65YMJo8E8pV8QYuYhSKvOvPusLRuFcd2cnc00av0E55rl"
+);
 
 const resolvers = {
   Query: {
@@ -16,7 +18,7 @@ const resolvers = {
     },
 
     products: async (parent, args, context) => {
-      console.log("hit")
+      console.log("hit");
       const products = await Product.find({});
       return products;
     },
@@ -27,41 +29,54 @@ const resolvers = {
     checkout: async (parent, args, context) => {
       const url = new URL(context.headers.referer).origin;
       const line_items = [];
-   
 
-    const products = args
-    console.log(products)
+      const products = args;
+      console.log(products);
 
-      for (let i = 0; i < products.length; i++) {
+      for (let i = 0; i < products.products.length; i++) {
+        console.log(products.products.length);
+        const productInfo = await Product.findOne({
+          _id: products.products[i],
+        });
+        console.log(productInfo);
+
         const product = await stripe.products.create({
-          name: products[i].name,
-          description: products[i].description,
-          images: [`${url}/images/${products[i].image}`]
+          name: productInfo.name,
+          description: productInfo.description,
+          images: [productInfo.image],
         });
-console.log(products)
-        const price = await stripe.prices.create({
-          product: product.id,
-          unit_amount: products[i].price,
-          currency: 'usd',
-        });
+        console.log(product, "line 45")
+        let price;
+try {
+ 
+  let amount = Math.round(productInfo.price * 100);
 
+ price = await stripe.prices.create({
+    product: product.id,
+    unit_amount: amount,
+    currency: "usd",
+  });
+} catch (error) {
+  console.log(error)
+}
+        
         line_items.push({
           price: price.id,
-          quantity: 1
-        }); console.log(line_items)
+          quantity: 1,
+        });
+        console.log(line_items);
       }
-
+        
       const session = await stripe.checkout.sessions.create({
-        payment_method_types: ['card'],
+        payment_method_types: ["card"],
         line_items,
-        mode: 'payment',
+        mode: "payment",
         success_url: `${url}/success?session_id={CHECKOUT_SESSION_ID}`,
-        cancel_url: `${url}/`
+        cancel_url: `${url}/`,
       });
-      
-
+   
       return { session: session.id };
-    }
+    },
   },
 
   Mutation: {
@@ -80,8 +95,8 @@ console.log(products)
       return { token, user };
     },
 
-    addUser: async (parent, {username, email, password}) => {
-      const user = await User.create({username, email, password});
+    addUser: async (parent, { username, email, password }) => {
+      const user = await User.create({ username, email, password });
       const token = signToken(user);
       return { token, user };
     },
