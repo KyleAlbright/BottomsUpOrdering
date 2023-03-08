@@ -1,6 +1,6 @@
 # Bottoms Up Ordering
 
-Bottoms Up is a online alcohol ordering app that allows viewers to check out different types of alcohol brands and drinks. First, sign up (or log in i you alrady have an account), and then you can add a drink of your liking to your cart, checkout, and pay! We include various types of alcoholic beverages, such as Jack Daniels, Bacardi, Absolut Vodka, and many more! If you have any have questions or concerns, fill out our contact form below and we will reply and send you an email. Enjoy!
+Bottoms Up is a online alcohol ordering app that allows viewers to check out different types of alcohol brands and drinks. First, sign up (or log in if you already have an account), and then you can add a drink of your liking to your cart, checkout, and pay! We include various types of alcoholic beverages, such as Jack Daniels, Bacardi, Absolut Vodka, and many more! If you have any have questions or concerns, fill out our contact form below and we will reply and send you an email. Enjoy!
 
 ## 23 Final Project: MERN Stack Single-Page Application
 
@@ -63,24 +63,35 @@ Although this is not a requirement for your project, see if you can also impleme
 * Is installable
 
 ## User Story
+
 ```
 AS a alcohol enthusiast
 I WANT to view different types of alcoholic beverages
 SO THAT I can create an account, add a drink to my cart, and finally checkout and pay
 ```
-
 ## Screenshot
 
 
 
 ## Technologies Used
 
+* React
+* Material UI
+* Framer-Motion
+* EmailJS
+* Swal
+* Stripe
+* React-Router-Dom
+* React-Player
+* Apollo
+* MongooseDB
+* Express
+* Node
 
-
-Contributors
+## Contributors
 
 * [Kyle Albright](https://github.com/KyleAlbright)
 * [Ye Kuang](https://github.com/ykuang321)
 * [Jeremy Koshy](https://github.com/jbkoshy)
 
-Deployed Application Link
+## Deployed Application Link
