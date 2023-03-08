@@ -17,7 +17,29 @@ import {
 import Logo from "../assets/logo4.png";
 import MenuIcon from "@material-ui/icons/Menu";
 import Login from "./LogAndSign";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Auth from '../utils/auth';
+
+let navigationLinks = [];
+
+Auth.loggedIn() ? (
+  navigationLinks = [
+    { name: "Products", href: "/products" },
+    { name: "View Cart", href: "shoppingcart" },
+    { name: "Contact Us", href: "contact" },
+    { name: "Logout", href: "login"},
+  ]
+) : (
+  navigationLinks = [
+    { name: "Contact Us", href: "contact" },
+    { name: "Login", href: "login" },
+  ]
+)
+
+
+
+
+
 
 const useStyles = makeStyles((theme) => ({
   navBar: {
@@ -59,7 +81,6 @@ const useStyles = makeStyles((theme) => ({
     outline: "none",
   },
 }));
-
 export default function Header() {
   const styles = useStyles();
   const [open, setOpen] = useState(false);
@@ -80,15 +101,12 @@ export default function Header() {
     Auth.logout();
     window.location.reload();
   };
-
   let navigationLinks = [];
-
   if (Auth.loggedIn()) {
     navigationLinks = [
       { name: "Products", href: "/products" },
       { name: "View Cart", href: "shoppingcart" },
       { name: "Contact Us", href: "contact" },
-      { name: "Logout", onClick: handleLogout },
     ];
   } else {
     navigationLinks = [
@@ -96,7 +114,6 @@ export default function Header() {
       { name: "Login", href: "login" },
     ];
   }
-
   const drawer = (
     <div className={styles.drawer}>
       <List>
@@ -116,7 +133,14 @@ export default function Header() {
       </List>
     </div>
   );
-  
+
+
+  const logout = (event) => {
+    event.preventDefault();
+    Auth.logout();
+  };
+
+
   return (
     <>
       <Modal
@@ -154,7 +178,11 @@ export default function Header() {
               {drawer}
             </SwipeableDrawer>
             <div style={{ flexGrow: 1 }} />
-            <Avatar alt="Bottoms-Up-Logo" src={Logo} />
+
+            <a href="/">
+            <Avatar alt="Bottoms-Up-Logo" src={Logo} href="/" />
+            </a>
+            
             {navigationLinks.map((item) =>
               item.name === "Login" ? (
                 <Button
@@ -191,8 +219,6 @@ export default function Header() {
       </AppBar>
     </>
   );
+
 }
-
-
-
 
