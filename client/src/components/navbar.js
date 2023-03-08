@@ -7,12 +7,11 @@ import {
   List,
   ListItem,
   ListItemText,
-  Link,
   makeStyles,
   Modal,
   SwipeableDrawer,
   Toolbar,
-  Avatar
+  Avatar,
 } from "@material-ui/core";
 import Logo from "../assets/logo4.png";
 import MenuIcon from "@material-ui/icons/Menu";
@@ -20,7 +19,7 @@ import Login from "./LogAndSign";
 import Auth from '../utils/auth';
 const useStyles = makeStyles((theme) => ({
   navBar: {
-    backgroundColor: '#6B4D2F',
+    backgroundColor: "#6B4D2F",
     color: theme.palette.primary.contrastText,
     paddingTop: theme.spacing(2),
     paddingBottom: theme.spacing(2),
@@ -32,6 +31,7 @@ const useStyles = makeStyles((theme) => ({
   link: {
     color: theme.palette.primary.contrastText,
     marginRight: theme.spacing(2),
+    textDecoration: 'none', 
     "&:hover": {
       textDecoration: "none",
     },
@@ -56,6 +56,15 @@ const useStyles = makeStyles((theme) => ({
     boxShadow: theme.shadows[5],
     padding: theme.spacing(4),
     outline: "none",
+  },
+  grow: {
+    flexGrow: 1,
+  },
+  navLinkContainer: {
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+    width: "100%",
   },
 }));
 export default function Header() {
@@ -101,7 +110,7 @@ export default function Header() {
               button
               key={item.name}
               component={Link}
-              href={item.href}
+              to={item.path}
               onClick={handleDrawerClose}
             >
               <ListItemText primary={item.name} />
