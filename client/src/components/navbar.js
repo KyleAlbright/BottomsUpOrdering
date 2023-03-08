@@ -17,13 +17,28 @@ import Logo from "../assets/logo4.png";
 import MenuIcon from "@material-ui/icons/Menu";
 import Login from "./LogAndSign";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import Auth from '../utils/auth';
 
-const navigationLinks = [
-  { name: "Products", path: "/products" },
-  { name: "View Cart", path: "/shoppingcart" },
-  { name: "Contact Us", path: "/contact" },
-  { name: "Login", path: "/login" },
-];
+let navigationLinks = [];
+
+Auth.loggedIn() ? (
+  navigationLinks = [
+    { name: "Products", href: "/products" },
+    { name: "View Cart", href: "shoppingcart" },
+    { name: "Contact Us", href: "contact" },
+    { name: "Logout", href: "login"},
+  ]
+) : (
+  navigationLinks = [
+    { name: "Contact Us", href: "contact" },
+    { name: "Login", href: "login" },
+  ]
+)
+
+
+
+
+
 
 const useStyles = makeStyles((theme) => ({
   navBar: {
@@ -75,29 +90,39 @@ const useStyles = makeStyles((theme) => ({
     width: "100%",
   },
 }));
-
 export default function Header() {
   const styles = useStyles();
   const [open, setOpen] = useState(false);
-
   const handleLoginClick = () => {
     setOpen(true);
   };
-
   const handleClose = () => {
     setOpen(false);
   };
-
   const [drawerOpen, setDrawerOpen] = useState(false);
-
   const handleDrawerOpen = () => {
     setDrawerOpen(true);
   };
-
   const handleDrawerClose = () => {
     setDrawerOpen(false);
   };
-
+  const handleLogout = () => {
+    Auth.logout();
+    window.location.reload();
+  };
+  let navigationLinks = [];
+  if (Auth.loggedIn()) {
+    navigationLinks = [
+      { name: "Products", href: "/products" },
+      { name: "View Cart", href: "shoppingcart" },
+      { name: "Contact Us", href: "contact" },
+    ];
+  } else {
+    navigationLinks = [
+      { name: "Contact Us", href: "contact" },
+      { name: "Login", href: "login" },
+    ];
+  }
   const drawer = (
     <div className={styles.drawer}>
       <List>
@@ -117,6 +142,13 @@ export default function Header() {
       </List>
     </div>
   );
+
+
+  const logout = (event) => {
+    event.preventDefault();
+    Auth.logout();
+  };
+
 
   return (
     <>
@@ -155,33 +187,47 @@ export default function Header() {
               {drawer}
             </SwipeableDrawer>
             <div style={{ flexGrow: 1 }} />
-            <Avatar alt="Bottoms-Up-Logo" src={Logo} />
-            <div style={{ display: "flex", flexGrow: 1, justifyContent: "center" }}>
-              {navigationLinks.map((item) =>
-                item.name === "Login" ? (
-                  <Button
-                    variant="contained"
-                    color=""
-                    onClick={handleLoginClick}
-                    key={item.name}
-                  >
-                    {item.name}
-                  </Button>
-                ) : (
-                  <Link
-                    className={styles.link}
-                    variant="button"
-                    to={item.path}
-                    key={item.name}
-                  >
-                    {item.name}
-                  </Link>
-                )
-              )}
-            </div>
+
+            <a href="/">
+            <Avatar alt="Bottoms-Up-Logo" src={Logo} href="/" />
+            </a>
+            
+            {navigationLinks.map((item) =>
+              item.name === "Login" ? (
+                <Button
+                  variant="contained"
+                  color=""
+                  onClick={handleLoginClick}
+                  key={item.name}
+                >
+                  {item.name}
+                </Button>
+              ) : (
+                <Link
+                  className={styles.link}
+                  variant="button"
+                  href={item.href}
+                  key={item.name}
+                >
+                  {item.name}
+                </Link>
+              )
+            )}
+            {Auth.loggedIn() && (
+              <Button
+                variant="contained"
+                color=""
+                onClick={handleLogout}
+                key="logout"
+              >
+                Logout
+              </Button>
+            )}
           </Toolbar>
         </Container>
       </AppBar>
     </>
   );
+
 }
+
