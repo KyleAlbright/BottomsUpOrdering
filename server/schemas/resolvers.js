@@ -1,4 +1,4 @@
-const { AuthenticationError } = require('apollo-server-express');
+const { AuthenticationError } = require("apollo-server-express");
 const { User, Product } = require("../models");
 const { signToken } = require("../utils/auth");
 const stripe = require("stripe")(
@@ -34,11 +34,11 @@ const resolvers = {
       console.log(products);
 
       for (let i = 0; i < products.products.length; i++) {
-        console.log(products.products.length);
+        console.log(products);
         const productInfo = await Product.findOne({
           _id: products.products[i],
         });
-        console.log(productInfo);
+        console.log(productInfo , "line 41");
 
         const product = await stripe.products.create({
           name: productInfo.name,
