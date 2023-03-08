@@ -16,7 +16,6 @@ export const QUERY_PRODUCTS = gql`
     products {
       _id
       name
-      stripeID
       description 
      category
       price
@@ -30,7 +29,6 @@ export const QUERY_SINGLE_PRODUCT = gql`
     getSingleProduct (productId: $productId) {
       _id
       name
-      stripeID
       description 
      category
       price

@@ -65,6 +65,15 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(4),
     outline: "none",
   },
+  grow: {
+    flexGrow: 1,
+  },
+  navLinkContainer: {
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+    width: "100%",
+  },
 }));
 
 export default function Header() {
@@ -147,27 +156,29 @@ export default function Header() {
             </SwipeableDrawer>
             <div style={{ flexGrow: 1 }} />
             <Avatar alt="Bottoms-Up-Logo" src={Logo} />
-            {navigationLinks.map((item) =>
-              item.name === "Login" ? (
-                <Button
-                  variant="contained"
-                  color=""
-                  onClick={handleLoginClick}
-                  key={item.name}
-                >
-                  {item.name}
-                </Button>
-              ) : (
-                <Link
-                  className={styles.link}
-                  variant="button"
-                  to={item.path}
-                  key={item.name}
-                >
-                  {item.name}
-                </Link>
-              )
-            )}
+            <div style={{ display: "flex", flexGrow: 1, justifyContent: "center" }}>
+              {navigationLinks.map((item) =>
+                item.name === "Login" ? (
+                  <Button
+                    variant="contained"
+                    color=""
+                    onClick={handleLoginClick}
+                    key={item.name}
+                  >
+                    {item.name}
+                  </Button>
+                ) : (
+                  <Link
+                    className={styles.link}
+                    variant="button"
+                    to={item.path}
+                    key={item.name}
+                  >
+                    {item.name}
+                  </Link>
+                )
+              )}
+            </div>
           </Toolbar>
         </Container>
       </AppBar>
