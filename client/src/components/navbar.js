@@ -11,16 +11,16 @@ import {
   Modal,
   SwipeableDrawer,
   Toolbar,
-  Avatar
+  Avatar,
 } from "@material-ui/core";
 import Logo from "../assets/logo4.png";
 import MenuIcon from "@material-ui/icons/Menu";
 import Login from "./LogAndSign";
-import Auth from '../utils/auth';
+import Auth from "../utils/auth";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 const useStyles = makeStyles((theme) => ({
   navBar: {
-    backgroundColor: '#6B4D2F',
+    backgroundColor: "#6B4D2F",
     color: theme.palette.primary.contrastText,
     paddingTop: theme.spacing(2),
     paddingBottom: theme.spacing(2),
@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
   link: {
     color: theme.palette.primary.contrastText,
     marginRight: theme.spacing(2),
-    textDecoration: 'none', 
+    textDecoration: "none",
     "&:hover": {
       textDecoration: "none",
     },
@@ -77,15 +77,16 @@ export default function Header() {
   };
   const handleLogout = () => {
     Auth.logout();
-    window.location.reload();
+    localStorage.removeItem("cartItems");
+    window.location.href = "/";
   };
+
   let navigationLinks = [];
   if (Auth.loggedIn()) {
     navigationLinks = [
       { name: "Products", path: "/products" },
       { name: "View Cart", path: "/shoppingcart" },
       { name: "Contact Us", path: "/contact" },
-      
     ];
   } else {
     navigationLinks = [
@@ -149,7 +150,9 @@ export default function Header() {
               {drawer}
             </SwipeableDrawer>
             <div style={{ flexGrow: 1 }} />
+            <a href="/">
             <Avatar alt="Bottoms-Up-Logo" src={Logo} />
+            </a>
             {navigationLinks.map((item) =>
               item.name === "Login" ? (
                 <Button
