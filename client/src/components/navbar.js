@@ -7,7 +7,6 @@ import {
   List,
   ListItem,
   ListItemText,
-  Link,
   makeStyles,
   Modal,
   SwipeableDrawer,
@@ -17,30 +16,8 @@ import {
 import Logo from "../assets/logo4.png";
 import MenuIcon from "@material-ui/icons/Menu";
 import Login from "./LogAndSign";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Auth from '../utils/auth';
-
-let navigationLinks = [];
-
-Auth.loggedIn() ? (
-  navigationLinks = [
-    { name: "Products", href: "/products" },
-    { name: "View Cart", href: "shoppingcart" },
-    { name: "Contact Us", href: "contact" },
-    { name: "Logout", href: "login"},
-  ]
-) : (
-  navigationLinks = [
-    { name: "Contact Us", href: "contact" },
-    { name: "Login", href: "login" },
-  ]
-)
-
-
-
-
-
-
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 const useStyles = makeStyles((theme) => ({
   navBar: {
     backgroundColor: '#6B4D2F',
@@ -55,6 +32,7 @@ const useStyles = makeStyles((theme) => ({
   link: {
     color: theme.palette.primary.contrastText,
     marginRight: theme.spacing(2),
+    textDecoration: 'none', 
     "&:hover": {
       textDecoration: "none",
     },
@@ -104,14 +82,15 @@ export default function Header() {
   let navigationLinks = [];
   if (Auth.loggedIn()) {
     navigationLinks = [
-      { name: "Products", href: "/products" },
-      { name: "View Cart", href: "shoppingcart" },
-      { name: "Contact Us", href: "contact" },
+      { name: "Products", path: "/products" },
+      { name: "View Cart", path: "/shoppingcart" },
+      { name: "Contact Us", path: "/contact" },
+      
     ];
   } else {
     navigationLinks = [
-      { name: "Contact Us", href: "contact" },
-      { name: "Login", href: "login" },
+      { name: "Contact Us", path: "/contact" },
+      { name: "Login", path: "/login" },
     ];
   }
   const drawer = (
@@ -124,7 +103,7 @@ export default function Header() {
               button
               key={item.name}
               component={Link}
-              href={item.href}
+              to={item.path}
               onClick={handleDrawerClose}
             >
               <ListItemText primary={item.name} />
@@ -133,14 +112,6 @@ export default function Header() {
       </List>
     </div>
   );
-
-
-  const logout = (event) => {
-    event.preventDefault();
-    Auth.logout();
-  };
-
-
   return (
     <>
       <Modal
@@ -178,11 +149,7 @@ export default function Header() {
               {drawer}
             </SwipeableDrawer>
             <div style={{ flexGrow: 1 }} />
-
-            <a href="/">
-            <Avatar alt="Bottoms-Up-Logo" src={Logo} href="/" />
-            </a>
-            
+            <Avatar alt="Bottoms-Up-Logo" src={Logo} />
             {navigationLinks.map((item) =>
               item.name === "Login" ? (
                 <Button
@@ -197,7 +164,7 @@ export default function Header() {
                 <Link
                   className={styles.link}
                   variant="button"
-                  href={item.href}
+                  to={item.path}
                   key={item.name}
                 >
                   {item.name}
@@ -219,6 +186,4 @@ export default function Header() {
       </AppBar>
     </>
   );
-
 }
-
