@@ -12,6 +12,7 @@ const useStyles = makeStyles((theme) => ({
   root: {
     top: 0,
     width: "100%",
+    height: "100vh",
     position: "relative",
     overflow: "hidden",
     "& video": {
@@ -35,6 +36,12 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.up("sm")]: {
       paddingBottom: theme.spacing(4),
     },
+    fontFamily: "Arial Black, sans-serif",
+    fontWeight: "bold",
+    letterSpacing: "0.1em",
+    textShadow: "3px 3px #fff", // 
+    color: "#FFD15B",
+    fontSize: "5rem",
   },
 }));
 
