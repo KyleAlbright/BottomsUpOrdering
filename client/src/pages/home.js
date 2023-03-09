@@ -1,45 +1,46 @@
+// importing everything we need
 
+import React from "react";
+import { makeStyles } from "@material-ui/core/styles";
+import Box from "@material-ui/core/Box";
+import Typography from "@material-ui/core/Typography";
+import ReactPlayer from "react-player";
+import heroVideo from "../assets/HeroVideo.mp4";
 
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Box from '@material-ui/core/Box';
-import Typography from '@material-ui/core/Typography';
-import ReactPlayer from 'react-player';
-import heroVideo from '../assets/HeroVideo.mp4';
-
-const useStyles = makeStyles(theme => ({
+// setting up some styling
+const useStyles = makeStyles((theme) => ({
   root: {
     top: 0,
-    width: '100%',
-    position: 'relative',
-    overflow: 'hidden',
-    '& video': {
-      objectFit: 'cover',
+    width: "100%",
+    position: "relative",
+    overflow: "hidden",
+    "& video": {
+      objectFit: "cover",
     },
   },
   overlay: {
-    position: 'absolute',
+    position: "absolute",
     top: 0,
     left: 0,
-    width: '100%',
-    height: '100%',
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
+    width: "100%",
+    height: "100%",
+    backgroundColor: "rgba(0, 0, 0, 0.5)",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
   },
   title: {
     paddingBottom: theme.spacing(2),
-    [theme.breakpoints.up('sm')]: {
+    [theme.breakpoints.up("sm")]: {
       paddingBottom: theme.spacing(4),
     },
   },
 }));
 
+// rendering our component
 const Hero = () => {
   const classes = useStyles();
- 
 
   return (
     <section className={classes.root}>

@@ -1,3 +1,5 @@
+// all our type defs and their relationships to each other
+
 const { gql } = require("apollo-server-express");
 
 const typeDefs = gql`

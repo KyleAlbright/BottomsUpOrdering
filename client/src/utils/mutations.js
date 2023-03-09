@@ -1,3 +1,5 @@
+// all of our mutations, and their key's
+
 import { gql } from "@apollo/client";
 
 export const LOGIN_USER = gql`
