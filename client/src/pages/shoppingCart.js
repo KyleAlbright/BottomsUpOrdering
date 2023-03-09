@@ -20,7 +20,7 @@ const stripePromise = loadStripe(
 const ShoppingCart = () => {
   const [cartItems, setCartItems] = useState([]);
   const [getCheckout, { data }] = useLazyQuery(QUERY_CHECKOUT);
-  const test = data?.products || [];
+  
   console.log(data);
   useEffect(() => {
     if (data) {
@@ -95,7 +95,17 @@ const ShoppingCart = () => {
     localStorage.setItem("cartItems", JSON.stringify(updatedCartItems));
   };
 
+
   const renderCartItems = () => {
+    if (cartItems.length === 0) {
+      return (
+        <Typography variant="h6" align="center">
+          Your cart is empty.
+        </Typography>
+      );
+    }
+    console.log(cartItems.length)
+
     return cartItems.map((item, index) => {
       return (
         <motion.div
@@ -171,31 +181,19 @@ const ShoppingCart = () => {
             Your Cart Total: &nbsp;<strong>${calculateTotal()}</strong> 
           </Typography>
         </Grid>
-        <Grid item container justifyContent="space-between" alignItems="center">
-          <Grid item>
-            <Button
-              variant="outlined"
-              color="primary"
-              onClick={() => {
-                window.location.href = "/products";
-              }}
-            >
-              Continue Shopping
-            </Button>
-          </Grid>
-          <Grid item>
-            <Button
-              variant="contained"
-              color="primary"
-              disabled={cartItems.length === 0}
-              onClick={submitCheckout}
-            >
-              Checkout
-            </Button>
-          </Grid>
-        </Grid>
         <Grid item container direction="column" spacing={2}>
           {renderCartItems()}
+        </Grid>
+        <Grid item>
+          <Button
+            variant="contained"
+            color="primary"
+            size="large"
+            disabled={cartItems.length === 0}
+            onClick={submitCheckout}
+          >
+            Checkout
+          </Button>
         </Grid>
       </Grid>
     </Box>

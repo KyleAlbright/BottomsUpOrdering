@@ -1,36 +1,37 @@
-import React, { useState } from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import Box from "@material-ui/core/Box";
-import Typography from "@material-ui/core/Typography";
-import ReactPlayer from "react-player";
-import heroVideo from "../assets/HeroVideo.mp4";
-import Typewriter from "typewriter-effect";
 
-const useStyles = makeStyles((theme) => ({
+
+import React from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import Box from '@material-ui/core/Box';
+import Typography from '@material-ui/core/Typography';
+import ReactPlayer from 'react-player';
+import heroVideo from '../assets/HeroVideo.mp4';
+
+const useStyles = makeStyles(theme => ({
   root: {
     top: 0,
-    width: "100%",
-    position: "relative",
-    overflow: "hidden",
-    "& video": {
-      objectFit: "cover",
+    width: '100%',
+    position: 'relative',
+    overflow: 'hidden',
+    '& video': {
+      objectFit: 'cover',
     },
   },
   overlay: {
-    position: "absolute",
+    position: 'absolute',
     top: 0,
     left: 0,
-    width: "100%",
-    height: "100%",
-    backgroundColor: "rgba(0, 0, 0, 0.5)",
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "center",
-    alignItems: "center",
+    width: '100%',
+    height: '100%',
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   title: {
     paddingBottom: theme.spacing(2),
-    [theme.breakpoints.up("sm")]: {
+    [theme.breakpoints.up('sm')]: {
       paddingBottom: theme.spacing(4),
     },
   },
@@ -38,9 +39,7 @@ const useStyles = makeStyles((theme) => ({
 
 const Hero = () => {
   const classes = useStyles();
-  const [state] = useState({
-    title: "WELCOME TO BOTTOMS-UP ORDERING",
-  });
+ 
 
   return (
     <section className={classes.root}>
@@ -55,20 +54,7 @@ const Hero = () => {
       <div className={classes.overlay}>
         <Box color="#fff" textAlign="center">
           <Typography variant="h3" component="h1" className={classes.title}>
-            <p className="titleTwo">{state.title}</p>
-            <p className="text">
-              <Typewriter
-                options={{
-                  autoStart: true,
-                  loop: true,
-                  delay: 40,
-                  strings: [
-                    "PLEASE LOG IN TO GET STARTED...",
-                    "OR SEND US A MESSAGE",
-                  ],
-                }}
-              />
-            </p>
+            Bottoms-Up Ordering
           </Typography>
         </Box>
       </div>
