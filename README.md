@@ -98,4 +98,5 @@ We are currently not accepting contributions to this project.
 
 Follow us here at our [Github](https://github.com/KyleAlbright/BottomsUpOrdering) 
 
-Email: kyle_albright@hotmail.com, kuangye869@gmail.com
+Email: kyle_albright@hotmail.com, kuangye869@gmail.com, koshyjeremy@gmail.com
+
