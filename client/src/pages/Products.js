@@ -1,3 +1,5 @@
+// importing everything we need
+
 import * as React from "react";
 import { useQuery } from "@apollo/client";
 import {
@@ -15,6 +17,7 @@ import { QUERY_PRODUCTS } from "../utils/queries";
 import ProductCard from "./productCard";
 import { motion } from "framer-motion";
 
+//defining our component, using a useQuery hook to grab all our products, a hook to grab the single product when clicked, or setting up an empty array if nothing is there.
 const Products = () => {
   const { loading, data } = useQuery(QUERY_PRODUCTS);
   const [selectedProductType, setSelectedProductType] = React.useState(null);
@@ -24,6 +27,7 @@ const Products = () => {
     setSelectedProductType(event.target.value);
   };
 
+  // filtering the products by category selected
   let filteredProducts = products;
   if (selectedProductType) {
     filteredProducts = products.filter(
@@ -31,21 +35,22 @@ const Products = () => {
     );
   }
 
+  // rendering our component - used framer motion to add some effects on the render
   return (
     <>
-       <Container
-      id="hero"
-      className="hero"
-      maxWidth="sm"
-      inputProps={{
-      sx:{
-        backgroundImage: "url('../assets/bottles.jpg')",
-        backgroundSize: "cover",
-        backgroundRepeat: "no-repeat",
-        backgroundPosition: "center",
-      }
-    }}
-    >
+      <Container
+        id="hero"
+        className="hero"
+        maxWidth="sm"
+        inputProps={{
+          sx: {
+            backgroundImage: "url('../assets/bottles.jpg')",
+            backgroundSize: "cover",
+            backgroundRepeat: "no-repeat",
+            backgroundPosition: "center",
+          },
+        }}
+      >
         <Box sx={{ my: 4 }}>
           <Typography variant="h4" component="h1" gutterBottom>
             Search by Product

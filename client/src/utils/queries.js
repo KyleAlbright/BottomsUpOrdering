@@ -1,3 +1,5 @@
+// all of our queries, and their key's
+
 import { gql } from "@apollo/client";
 
 export const GET_ME = gql`
@@ -15,8 +17,8 @@ export const QUERY_PRODUCTS = gql`
     products {
       _id
       name
-      description 
-     category
+      description
+      category
       price
       image
     }
@@ -24,11 +26,11 @@ export const QUERY_PRODUCTS = gql`
 `;
 
 export const QUERY_SINGLE_PRODUCT = gql`
-  query singleProduct ($productId: ID!) {
-    getSingleProduct (productId: $productId) {
+  query singleProduct($productId: ID!) {
+    getSingleProduct(productId: $productId) {
       _id
       name
-      description 
+      description
       category
       price
       image
@@ -43,5 +45,3 @@ export const QUERY_CHECKOUT = gql`
     }
   }
 `;
-
-

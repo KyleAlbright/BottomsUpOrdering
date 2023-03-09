@@ -1,3 +1,5 @@
+// importing everything we need
+
 import { useState } from "react";
 import {
   AppBar,
@@ -18,6 +20,8 @@ import MenuIcon from "@material-ui/icons/Menu";
 import Login from "./LogAndSign";
 import Auth from "../utils/auth";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+
+// setting up some custom styles
 const useStyles = makeStyles((theme) => ({
   navBar: {
     backgroundColor: "#6B4D2F",
@@ -59,6 +63,8 @@ const useStyles = makeStyles((theme) => ({
     outline: "none",
   },
 }));
+
+// setting state variables for the login modal and mobile drawer
 export default function Header() {
   const styles = useStyles();
   const [open, setOpen] = useState(false);
@@ -81,6 +87,7 @@ export default function Header() {
     window.location.href = "/";
   };
 
+  // setting up the navigation links relative to if the user is logged in or not
   let navigationLinks = [];
   if (Auth.loggedIn()) {
     navigationLinks = [
@@ -94,6 +101,7 @@ export default function Header() {
       { name: "Login", path: "/login" },
     ];
   }
+  // setting up the mobile drawer, but leaving out the login button
   const drawer = (
     <div className={styles.drawer}>
       <List>
@@ -113,6 +121,8 @@ export default function Header() {
       </List>
     </div>
   );
+
+  // rendering our component
   return (
     <>
       <Modal
@@ -151,7 +161,7 @@ export default function Header() {
             </SwipeableDrawer>
             <div style={{ flexGrow: 1 }} />
             <a href="/">
-            <Avatar alt="Bottoms-Up-Logo" src={Logo} />
+              <Avatar alt="Bottoms-Up-Logo" src={Logo} />
             </a>
             {navigationLinks.map((item) =>
               item.name === "Login" ? (

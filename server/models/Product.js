@@ -1,4 +1,8 @@
+// import everything we need
+
 const { Schema, model } = require('mongoose');
+
+
 
 const productSchema = new Schema({
   name: {
