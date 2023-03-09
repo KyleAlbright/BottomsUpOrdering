@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
 function Success() {
   const classes = useStyles();
   const handleGoHome = () => {
-    // Remove all items from local storage
+    
     localStorage.removeItem('cartItems');
   }
 
