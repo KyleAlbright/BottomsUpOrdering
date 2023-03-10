@@ -58,7 +58,8 @@ const ShoppingCart = () => {
   // function to calculate the total of our cart
   function calculateTotal() {
     let sum = 0;
-    cartItems.forEach((item) => {
+    if (cartItems === null) return sum
+    else cartItems.forEach((item) => {
       sum += item.product.price * item.quantity;
     });
     return sum.toFixed(2);
@@ -107,7 +108,7 @@ const ShoppingCart = () => {
 
   // render the cart. Conditional statement to show the cart is empty if nothing is in the cart.
   const renderCartItems = () => {
-    if (cartItems.length === 0) {
+    if (cartItems?.length === 0) {
       return (
         <Typography variant="h6" align="center">
           Your cart is empty.
@@ -115,7 +116,8 @@ const ShoppingCart = () => {
       );
     }
 
-    return cartItems.map((item, index) => {
+    
+    if (cartItems === null){return []}else {return cartItems.map((item, index) => {
       return (
         <motion.div
           key={item.product.id}
@@ -180,7 +182,7 @@ const ShoppingCart = () => {
         </motion.div>
       );
     });
-  };
+  };}
 
   return (
     <Box>
@@ -194,7 +196,7 @@ const ShoppingCart = () => {
               variant="contained"
               color="primary"
               size="large"
-              disabled={cartItems.length === 0}
+              disabled={cartItems?.length === 0}
               onClick={submitCheckout}
               padding="3rem"
             >

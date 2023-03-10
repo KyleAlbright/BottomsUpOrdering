@@ -93,6 +93,7 @@ const Login = () => {
             <Input
               placeholder="Enter Password"
               onChange={(event) => setFromPassword(event.target.value)}
+              type="password"
             />
           </FormControl>
 
