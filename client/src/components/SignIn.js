@@ -89,10 +89,11 @@ const Login = () => {
             />
           </FormControl>
 
-          <FormControl name="Password" type="Password" fullWidth required>
+          <FormControl name="Password" type="password" fullWidth required>
             <Input
               placeholder="Enter Password"
               onChange={(event) => setFromPassword(event.target.value)}
+              type="password"
             />
           </FormControl>
 

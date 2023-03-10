@@ -104,6 +104,7 @@ const Signup = () => {
             <Input
               placeholder="Enter Password"
               onChange={(event) => setPassword(event.target.value)}
+              type="password"
             />
           </FormControl>
 
